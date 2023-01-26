@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import NavLink from "./components/NavLinks";
 import { navIconList } from "./components/NavLinks";
+import Barney from "./barney-stinson.jpg";
 
 const SidebarProfileBtn = () => {
   return (
     <button className="profile-btn hover:bg-gray-200 transform transition-colors duration-300 flex justify-between items-center rounded-full p-2.5 my-3">
       <div className="phto-username flex items-center">
-        <div
-          id="photo"
-          className="w-11 h-11 rounded-full border border-red-700"
-        ></div>
+        <div id="photo" className="w-11 h-11 rounded-full overflow-hidden">
+          <img src={Barney} alt="" className="w-full h-full" />
+        </div>
         <div className="name-username flex flex-col items-start ml-3">
           <h1 className="font-semibold text-base">name</h1>
           <h2 className="text-base text-gray-600 font-normal">@username</h2>
@@ -25,6 +25,10 @@ const SidebarProfileBtn = () => {
 };
 
 const Sidebar = () => {
+  const [activeBtn, setActiveBtn] = useState("Home");
+  const navItemClick = (name: string) => {
+    setActiveBtn(name);
+  };
   return (
     <div className="border-solid border w-72 px-3 border-indigo-600 flex flex-col justify-between">
       <ul className="flex flex-col">
@@ -34,6 +38,8 @@ const Sidebar = () => {
             path={icon.path}
             color={icon.color}
             hoverBgColor={icon.hoverBgColor}
+            activeBtn={activeBtn}
+            navLinksClick={navItemClick}
           />
         ))}
         <button className=" bg-primary-base hover:bg-primary-dark transform transition-colors duration-300 py-3 my-4 w-11/12 rounded-full font-bold text-lg text-white">

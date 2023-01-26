@@ -47,18 +47,27 @@ type NavLinkType = {
   path: string;
   color?: string;
   hoverBgColor?: string;
+  activeBtn: string;
+  navLinksClick: Function;
 };
 
-const NavLink: FC<NavLinkType> = ({ name, path, color, hoverBgColor }) => {
+const NavLink: FC<NavLinkType> = ({
+  name,
+  path,
+  color,
+  hoverBgColor,
+  activeBtn,
+  navLinksClick,
+}) => {
+  const isActiveBtn = activeBtn === name;
+
   return (
-    <li className="list-none">
-      <a href="" className="group">
+    <li className="list-none" onClick={() => navLinksClick(name)}>
+      <a href={name?.toLocaleLowerCase()} className="group pointer-events-none">
         <div
-          className={
-            "flex items-center p-3 w-fit my-1 group-hover:bg-gray-200 " +
-            hoverBgColor +
-            " rounded-full transform transition-colors duration-300"
-          }
+          className={`flex items-center p-3 w-fit my-1 group-hover:bg-gray-200 ${hoverBgColor} rounded-full transform transition-colors duration-300 ${
+            isActiveBtn ? "font-bold" : ""
+          }`}
         >
           <svg width="26" height="26" viewBox="0 0 24 24" className={color}>
             <g>
