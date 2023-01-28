@@ -15,6 +15,10 @@ module.exports = {
           extralight: "#E1E8ED",
           lightest: "#F5F8FA",
         },
+        white: {
+          transparent5: "rgba(255, 255, 255, .6)",
+          mat: "#FFF",
+        },
         black: "#14171A",
       },
     },
