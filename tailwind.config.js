@@ -8,6 +8,7 @@ module.exports = {
           base: "hsl(203,89%,53%)",
           dark: "hsl(203,89%,46%)",
           light: "hsl(203,89%,96%)",
+          notAcLights: "hsl(203,89%,73%)",
         },
         gray: {
           dark: "#657786",
@@ -16,7 +17,7 @@ module.exports = {
           lightest: "#F5F8FA",
         },
         white: {
-          transparent5: "rgba(255, 255, 255, .6)",
+          transparent5: "rgba(255, 255, 255, .85)",
           mat: "#FFF",
         },
         black: "#14171A",

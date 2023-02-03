@@ -10,14 +10,6 @@ const array = [
   { title: "jaiodjaio" },
   { title: "jaiodjaio" },
   { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
 ];
 
 const Aside = () => {
