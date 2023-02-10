@@ -1,6 +1,8 @@
 import React, { FC, useState, useEffect } from "react";
 import barney from "../barney-stinson.jpg";
 import { setDataToDB } from "../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { tweetsRef, db } from "../firebase";
 
 const postIcons = [
   {
@@ -37,6 +39,8 @@ const postIcons = [
 };
  */
 const SendPost = () => {
+  const [data] = useCollectionData(tweetsRef);
+
   const [textarea, setTextarea] = useState("");
   useEffect(() => {}, []);
   return (
@@ -76,7 +80,7 @@ const SendPost = () => {
           id="sendTextContentbtn"
           onClick={() => {
             setDataToDB(
-              Math.round(Math.random() * 999999999999).toString(),
+              data?.length.toString(),
               "emrecanakisik",
               "emrecanakisik2",
               textarea,

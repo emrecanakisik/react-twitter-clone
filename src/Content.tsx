@@ -3,13 +3,22 @@ import PostTab from "./components/PostTab";
 import SendPost from "./components/SendPost";
 import Post from "./components/Post";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { tweetsRef, db } from "./firebase";
+import { tweetsRef } from "./firebase";
 
 const Content = () => {
   const [data] = useCollectionData(tweetsRef);
-  useEffect(() => {
-    setTimeout(() => console.log(data), 1000);
-  });
+
+  const postDate = (currentTime: number) => {
+    const resultTime = (new Date().getTime() - currentTime) / 1000 / 60 / 60;
+    if (resultTime < 1) {
+      return Math.floor(resultTime * 60) + "m";
+    } else if (resultTime > 23) {
+      return Math.floor(resultTime / 24) + "d";
+    } else {
+      return Math.floor(resultTime) + "h";
+    }
+  };
+
   return (
     <div className="border border-x flex-1">
       <div className="header bg-white-transparent5 backdrop-blur-sm sticky top-0">
@@ -20,21 +29,18 @@ const Content = () => {
         </div>
       </div>
       <SendPost />
-      <Post
-        displayName="emrecan"
-        username="emr2004"
-        timestamp={15}
-        textContent="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium dolor quasi commodi sequi nemo non iure dolore voluptas eos ut."
-      />
-      <h1>{}</h1>
-      {data?.map((tweet) => (
-        <Post
-          displayName={tweet.displayName}
-          username={tweet.username}
-          timestamp={15}
-          textContent={tweet.textContent}
-        />
-      ))}
+      {data
+        ?.sort((a, b) => {
+          return b.id - a.id;
+        })
+        .map((tweet) => (
+          <Post
+            displayName={tweet.displayName}
+            username={tweet.username}
+            timestamp={postDate(tweet.time?.toDate().getTime())} //postDate(tweet.time.toDate().getTime())
+            textContent={tweet.textContent}
+          />
+        ))}
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
   getDoc,
   getDocs,
   onSnapshot,
+  serverTimestamp,
 } from "firebase/firestore";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -44,5 +45,8 @@ export const setDataToDB = async (
     username: username,
     textContent: textContent,
     profImg: profImg,
+    id: tweetID,
+    time: serverTimestamp(),
   });
+  console.log(serverTimestamp());
 };
