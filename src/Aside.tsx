@@ -1,37 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import TrendTags from "./components/TrendTags";
 import FooterItem from "./components/FooterItem";
-
-const array = [
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-  { title: "jaiodjaio" },
-];
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { hashtagsRef } from "./firebase";
 
 const Aside = () => {
+  const [data] = useCollectionData(hashtagsRef);
+  const NumOfHastagsValue = (numOfHashtags: number) => {
+    const strngHashtagsValue = numOfHashtags.toString();
+    if (numOfHashtags >= 1000000) {
+      return `${strngHashtagsValue.at(0)}.${strngHashtagsValue.at(1)}M`;
+    } else if (numOfHashtags >= 100000) {
+      return `${strngHashtagsValue.slice(0, 3)}K`;
+    } else if (numOfHashtags >= 10000) {
+      return `${strngHashtagsValue.slice(0, 2)}K`;
+    } else if (numOfHashtags >= 1000) {
+      return `${strngHashtagsValue.slice(0, 1)}.${strngHashtagsValue.slice(
+        1,
+        4
+      )}K`;
+    } else {
+      return numOfHashtags;
+    }
+  };
+  useEffect(() => {
+    console.log(NumOfHastagsValue(576));
+  });
+
   return (
     <aside className="w-96 pb-1.5 px-4">
       <SearchBar />
-      <div className=" sticky -top-36">
+      <div className="sticky -top-36">
         <div className="timeline mb-4 bg-gray-lightest rounded-2xl overflow-hidden">
           <h1 className="timeline-title m-3.5 text-xl font-bold">
             Trends for you
           </h1>
-          {array.map((title) => (
-            <TrendTags
-              trendTopic="Trending in Turkey"
-              tag={title.title}
-              numOfTweets={1151}
-            />
-          ))}
+          {data
+            ?.sort((a, b) => {
+              return b.numOfHashtags - a.numOfHashtags;
+            })
+            .map((tagitem) => (
+              <TrendTags
+                trending_in={tagitem.trending_in}
+                topic={tagitem.topic}
+                numOfHashtags={NumOfHastagsValue(tagitem.numOfHashtags)}
+              />
+            ))}
           <a
             href="i/trends"
             className="block text-primary-base p-3.5 hover:bg-gray-extralight duration-200"

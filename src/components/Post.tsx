@@ -74,7 +74,9 @@ const post: FC<post> = ({ displayName, username, timestamp, textContent }) => {
               </svg>
             </button>
           </div>
-          <p className="text-gray-800 leading-5">{textContent}</p>
+          <p className="tweet-text-content text-gray-800 leading-5">
+            {textContent}
+          </p>
         </div>
       </div>
       <div className="bottom-icons flex items-center justify-evenly px-2 pb-1 left-0">

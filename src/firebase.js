@@ -1,17 +1,10 @@
 import { async } from "@firebase/util";
-import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import {
   getFirestore,
   collection,
   doc,
-  docs,
-  get,
   setDoc,
-  getDoc,
-  getDocs,
-  onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
 
@@ -32,6 +25,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 export const tweetsRef = collection(db, "tweets");
+export const hashtagsRef = collection(db, "timeline");
 
 export const setDataToDB = async (
   tweetID,
