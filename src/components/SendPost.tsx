@@ -62,7 +62,7 @@ const SendPost = () => {
       <div className="icons-tweet-btn ml-20 flex justify-between">
         <div className="post-icons flex">
           {postIcons.map((icon) => (
-            <button>
+            <button key={`sendPostIcon-${icon.name}`}>
               <svg
                 width="37"
                 height="37"

@@ -35,6 +35,7 @@ const Content = () => {
         })
         .map((tweet) => (
           <Post
+            key={`tweetNo-${tweet.id}`}
             displayName={tweet.displayName}
             username={tweet.username}
             timestamp={postDate(tweet.time?.toDate().getTime())} //postDate(tweet.time.toDate().getTime())

@@ -26,7 +26,8 @@ const Aside = () => {
   };
   useEffect(() => {
     console.log(NumOfHastagsValue(576));
-  });
+    console.log("a");
+  }, []);
 
   return (
     <aside className="w-96 pb-1.5 px-4">
@@ -42,6 +43,7 @@ const Aside = () => {
             })
             .map((tagitem) => (
               <TrendTags
+                key={`trendTag-${tagitem.topic}`}
                 trending_in={tagitem.trending_in}
                 topic={tagitem.topic}
                 numOfHashtags={NumOfHastagsValue(tagitem.numOfHashtags)}

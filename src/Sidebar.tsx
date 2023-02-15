@@ -11,13 +11,14 @@ const Sidebar = () => {
   return (
     <div className="sticky top-0 h-screen w-72 px-3 flex flex-col justify-between">
       <ul className="flex flex-col">
-        {navIconList.map((icon) => (
+        {navIconList.map((icon, index) => (
           <NavLink
             name={icon.name}
             path={icon.path}
             color={icon.color}
             hoverBgColor={icon.hoverBgColor}
             activeBtn={activeBtn}
+            key={`navlink-${icon.name}`}
             navLinksClick={navItemClick}
           />
         ))}
