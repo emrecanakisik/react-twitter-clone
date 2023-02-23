@@ -1,26 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PostTab from "./components/PostTab";
 import SendPost from "./components/SendPost";
 import Post from "./components/Post";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { tweetsRef } from "./firebase";
 
+const postDate = (currentTime: number) => {
+  const resultTime = (new Date().getTime() - currentTime) / 1000 / 60 / 60;
+  if (resultTime < 1) {
+    return Math.floor(resultTime * 60) + "m";
+  } else if (resultTime > 23) {
+    return Math.floor(resultTime / 24) + "d";
+  } else {
+    return Math.floor(resultTime) + "h";
+  }
+};
+
 const Content = () => {
   const [data] = useCollectionData(tweetsRef);
 
-  const postDate = (currentTime: number) => {
-    const resultTime = (new Date().getTime() - currentTime) / 1000 / 60 / 60;
-    if (resultTime < 1) {
-      return Math.floor(resultTime * 60) + "m";
-    } else if (resultTime > 23) {
-      return Math.floor(resultTime / 24) + "d";
-    } else {
-      return Math.floor(resultTime) + "h";
-    }
-  };
-
   return (
-    <div className="border border-x flex-1">
+    <div className="border border-x border-gray-100 flex-1">
       <div className="header bg-white-transparent5 backdrop-blur-sm sticky top-0">
         <h1 className="text-xl font-bold p-4 bg-transparent">Home</h1>
         <div className="post-tabs flex bg-transparent">

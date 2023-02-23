@@ -42,9 +42,8 @@ const SendPost = () => {
   const [data] = useCollectionData(tweetsRef);
 
   const [textarea, setTextarea] = useState("");
-  useEffect(() => {}, []);
   return (
-    <div className="p-2.5 border">
+    <div className="p-2.5 border border-x-0 border-b-0 border-gray-100">
       <div className="pht-text flex">
         <div className="image-box h-14 w-14 mx-3 rounded-full overflow-hidden">
           <img src={barney} alt="" />

@@ -4,7 +4,7 @@ const SearchBar = () => {
   return (
     <div className="pb-3 pt-1.5 sticky top-0 bg-white-mat z-10">
       <div
-        className="group search-bar group border p-1 flex items-center rounded-full bg-gray-200 text-gray-dark focus-within:bg-transparent focus-within:border-primary-base focus-within:text-primary-base"
+        className="group search-bar group border border-transparent p-1 flex items-center rounded-full bg-gray-100 text-gray-dark focus-within:bg-transparent focus-within:border-primary-base focus-within:text-primary-base"
         tabIndex={1}
       >
         <svg

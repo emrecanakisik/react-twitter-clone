@@ -60,7 +60,6 @@ const NavLink: FC<NavLinkType> = ({
   navLinksClick,
 }) => {
   const isActiveBtn = activeBtn === name;
-
   return (
     <li className="list-none" onClick={() => navLinksClick(name)}>
       <a href={name?.toLocaleLowerCase()} className="group">

@@ -32,6 +32,7 @@ const FooterItem: FC<footerItem> = ({ title, className, itemType }) => {
     ) : (
       ""
     );
+
   return (
     <>
       {footerItemBtn}

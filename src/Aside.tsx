@@ -24,10 +24,6 @@ const Aside = () => {
       return numOfHashtags;
     }
   };
-  useEffect(() => {
-    console.log(NumOfHastagsValue(576));
-    console.log("a");
-  }, []);
 
   return (
     <aside className="w-96 pb-1.5 px-4">
